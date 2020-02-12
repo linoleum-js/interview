@@ -2,7 +2,7 @@ import React from 'react';
 import { initializeIcons } from '@uifabric/icons';
 
 import { UsersList, IUsersListProps } from './components/UsersList';
-import { IUserCardProps } from './components/UserCard/UserCard';
+import { IUserData } from './components/UserCard/UserCard';
 
 import {
   ColorClassNames,
@@ -12,7 +12,7 @@ import {
 initializeIcons();
 
 export const App: React.FunctionComponent = () => {
-  const list: IUserCardProps[] = [{
+  const list: IUserData[] = [{
     img: 'http://placekitten.com/200/200',
     name: 'John Dow',
     phone: '123',
@@ -38,6 +38,14 @@ export const App: React.FunctionComponent = () => {
     email: 'somemail@gmail.com'
   }];
 
+  const onEdit = function (id: string) {
+    console.log('edit', id);
+  };
+
+  const onDelete = function (id: string) {
+    console.log('delete', id);
+  };
+
   return (
     <div className={`
         ${ColorClassNames.themePrimary},
@@ -45,7 +53,11 @@ export const App: React.FunctionComponent = () => {
       `}
     >
       <div className="ms-fontWeight-regular">
-        <UsersList list={list} />
+        <UsersList
+          list={list}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       </div>
     </div>
   );

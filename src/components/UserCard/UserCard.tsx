@@ -11,7 +11,7 @@ import { IconButton } from 'office-ui-fabric-react';
 
 import './UserCard.css';
 
-export interface IUserCardProps {
+export interface IUserData {
   img: string;
   name: string;
   phone: string;
@@ -20,9 +20,13 @@ export interface IUserCardProps {
   id: string;
   email: string;
 }
+type IUserCardProps = IUserData & {
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
+};
 
 export const UserCard: React.FunctionComponent<IUserCardProps> = ({
-  img, name, phone, jobTitle, office, email
+  img, name, phone, jobTitle, office, email, onEdit, onDelete, id
 }) => {
   return <DocumentCard type={DocumentCardType.compact}>
     <DocumentCardPreview previewImages={[{ previewImageSrc: img }]} />
@@ -48,11 +52,12 @@ export const UserCard: React.FunctionComponent<IUserCardProps> = ({
       <IconButton
         iconProps={{ iconName: 'edit' }}
         title="edit"
+        onClick={() => onEdit(id)}
       />
-
       <IconButton
         iconProps={{ iconName: 'delete' }}
         title="delete"
+        onClick={() => onDelete(id)}
       />
     </div>
   </DocumentCard>;

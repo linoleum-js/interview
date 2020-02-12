@@ -5,17 +5,27 @@ import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { Modal } from 'office-ui-fabric-react';
 import { find } from 'lodash';
 
-
 import { UsersList, IUsersListProps } from './components/UsersList';
 import { UserForm } from './components/UserForm/UserForm';
 import { IUserData } from './components/UserCard/UserCard';
 import { IAppState } from './redux/store';
 import { IUsersListState } from './redux/users';
+import { DefaultButton, PrimaryButton, Stack, IStackItemStyles } from 'office-ui-fabric-react';
+import { Dropdown, DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+
 import {
   fetchUsersList, updateUser, deleteUser, addUser
 } from './redux/users';
 
 initializeIcons();
+
+const dropdownOptions: IDropdownOption[] = [{
+  key: 'name_asc', text: 'Name ↓'
+}, {
+  key: 'name_desc', text: 'Name ↑'
+}, {
+  key: 'default', text: 'Default'
+}];
 
 export const App: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -25,6 +35,7 @@ export const App: React.FunctionComponent = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [editingItemId, setEditingItemId] = useState<string|null>(null);
+  const [sortingOrder, setSortingOrder] = useState<string|number>('default');
 
   const onEdit = function (id: string) {
     setEditModalOpen(true);
@@ -44,22 +55,58 @@ export const App: React.FunctionComponent = () => {
     setAddModalOpen(true);
   };
 
+  const onAddSubmit = function (data: IUserData) {
+    dispatch(addUser(data));
+    setAddModalOpen(false);
+  };
+
+  const sortList = function (list: IUserData[]) {
+    const listCopy = [...list];
+    if (sortingOrder === 'default') {
+      return listCopy;
+    }
+    listCopy.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
+    if (sortingOrder === 'name_asc') {
+      return listCopy;
+    } else {
+      return listCopy.reverse();
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchUsersList());
   }, []);
 
   return (
     <div>
-      <CommandBar
-        items={[{
-          key: 'addUser',
-          text: 'Add user',
-          iconProps: { iconName: 'Add' },
-          onClick: onAdd
-        }]}
-      />
+      <Stack horizontal verticalAlign="center">
+        <Stack.Item>
+          <Dropdown
+            label="Sort users"
+            selectedKey={sortingOrder}
+            options={dropdownOptions}
+            onChange={(event: any, value?: IDropdownOption) => {
+              if (!value) {
+                setSortingOrder('default');
+              } else {
+                setSortingOrder(value.key);
+              }
+            }}
+            styles={{ root: { width: 200, margin: 20, marginTop: 0 } }}
+          />
+        </Stack.Item>
+        <Stack.Item styles={{ root: { position: 'relative', top: 4 } }}>
+          <DefaultButton
+            text="Add user"
+            onClick={onAdd}
+            iconProps={{ iconName: 'add' }}
+          />
+        </Stack.Item>
+      </Stack>
       <UsersList
-        list={usersList.list}
+        list={sortList(usersList.list)}
         onEdit={onEdit}
         onDelete={onDelete}
       />
@@ -69,7 +116,7 @@ export const App: React.FunctionComponent = () => {
         onDismiss={() => setAddModalOpen(false)}
       >
         <UserForm
-          onSubmit={() => { console.log('submit add'); }}
+          onSubmit={onAddSubmit}
           editMode={false}
           onClose={() => setAddModalOpen(false)}
         />

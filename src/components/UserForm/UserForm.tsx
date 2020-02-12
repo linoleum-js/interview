@@ -8,6 +8,8 @@ import { IUserData } from '../UserCard/UserCard';
 
 import './UserForm.css';
 
+const imagePlaceholderUrl = 'https://support.hostgator.com/img/articles/weebly_image_sample.png';
+
 export interface IUserFormProps {
   editMode: boolean;
   data?: IUserData;
@@ -81,10 +83,26 @@ export const UserForm: React.FunctionComponent<IUserFormProps> = ({
     setLocalData({ ...localData, ...partialData });
   }
 
+  const onFileChange = function (event: any) {
+    const files = event.target.files;
+    if (!files.length) {
+      return;
+    }
+    const url = URL.createObjectURL(files[0]);
+    setLocalData({ ...localData, ...{ img: url } });
+    event.target.value = '';
+  };
+
   return <div className="user-form-wrapper">
     <Text variant="large">
       {editMode ? "Edit user" : "Add user"}
     </Text>
+    
+    <label htmlFor="file-input" className="user-form-file-label">
+      <img src={localData.img || imagePlaceholderUrl} alt="" />
+    </label>
+    <input type="file" id="file-input" onChange={onFileChange} hidden />
+
     <TextField
       label="Name"
       required

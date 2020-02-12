@@ -31,7 +31,7 @@ export const UserCard: React.FunctionComponent<IUserCardProps> = ({
   img, name, phone, jobTitle, office, email, onEdit, onDelete, id
 }) => {
   return <DocumentCard type={DocumentCardType.compact}>
-    <DocumentCardPreview previewImages={[{ previewImageSrc: img }]} />
+    <DocumentCardPreview previewImages={[{ previewImageSrc: img, width: 150 }]} />
     <DocumentCardDetails>
       <DocumentCardTitle
         title={`${name}, ${jobTitle}`}

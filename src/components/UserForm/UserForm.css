@@ -2,3 +2,16 @@
   padding: 30px;
   width: 300px;
 }
+
+.user-form-file-label {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  height: 150px;
+  overflow: hidden;
+}
+
+.user-form-file-label img {
+  display: inline-block;
+  max-height: 100%;
+}

@@ -1,20 +1,21 @@
 import { Reducer, Action } from 'redux';
 import { findIndex } from 'lodash';
+import uuid from 'uuid';
 
 import { IUserData } from '../components/UserCard/UserCard';
 
 const list: IUserData[] = [{
   img: 'http://placekitten.com/200/200',
   name: 'John Dow',
-  phone: '123',
+  phone: '12345123456',
   jobTitle: 'javascript developer',
   office: '323B',
   id: '1',
   email: 'somemail@gmail.com'
 }, {
-  img: 'http://placekitten.com/200/200',
+  img: 'https://via.placeholder.com/200',
   name: 'Jimi Hendrix',
-  phone: '123',
+  phone: '12345123456',
   jobTitle: 'javascript developer',
   office: '323B',
   id: '2',
@@ -22,10 +23,26 @@ const list: IUserData[] = [{
 }, {
   img: 'http://placekitten.com/200/200',
   name: 'Linus Sebastian',
-  phone: '123',
+  phone: '12345123456',
   jobTitle: 'javascript developer',
   office: '323B',
   id: '3',
+  email: 'somemail@gmail.com'
+}, {
+  img: 'http://placekitten.com/200/200',
+  name: 'Anna Smith',
+  phone: '12345123456',
+  jobTitle: 'javascript developer',
+  office: '323B',
+  id: '4',
+  email: 'somemail@gmail.com'
+}, {
+  img: 'https://via.placeholder.com/200',
+  name: 'Zina Ivanova',
+  phone: '12345123456',
+  jobTitle: 'javascript developer',
+  office: '323B',
+  id: '5',
   email: 'somemail@gmail.com'
 }];
 
@@ -154,7 +171,7 @@ const UsersListReducer: Reducer<IUsersListState> = (
       const { list } = state;
       return {
         isLoading: false,
-        list: [...list, user]
+        list: [...list, { ...user, id: uuid() }]
       };
     }
 

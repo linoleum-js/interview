@@ -4,7 +4,7 @@ import { Text } from 'office-ui-fabric-react/lib/Text';
 import { DefaultButton, PrimaryButton, Stack, IStackItemStyles } from 'office-ui-fabric-react';
 import { isEmpty } from 'lodash';
 
-import { IUserData } from '../../models/IUserData';
+import { IUserData } from '@models/IUserData';
 
 import './UserForm.css';
 

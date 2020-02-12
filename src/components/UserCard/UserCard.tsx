@@ -11,7 +11,7 @@ import { IconButton } from 'office-ui-fabric-react';
 import { Text } from 'office-ui-fabric-react/lib/Text';
 
 
-import { IUserData } from '../../models/IUserData';
+import { IUserData } from '@models/IUserData';
 
 import './UserCard.css';
 

@@ -6,7 +6,7 @@ import { Customizer, mergeStyles } from 'office-ui-fabric-react';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 
-import store from './redux/store';
+import store from '@redux/store';
 
 // Inject some global styles
 mergeStyles({

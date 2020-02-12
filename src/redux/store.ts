@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import UsersListReducer, { IUsersListState } from './users';
-// import { IUserData } from '../components/UserCard/UserCard';
+import UsersListReducer, { IUsersListState } from '@redux/users';
 
 export interface IAppState {
   usersList: IUsersListState

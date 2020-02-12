@@ -80,7 +80,7 @@ export const App: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ width: 500, margin: '0 auto' }}>
       <Stack horizontal verticalAlign="center">
         <Stack.Item>
           <Dropdown
@@ -94,7 +94,7 @@ export const App: React.FunctionComponent = () => {
                 setSortingOrder(value.key);
               }
             }}
-            styles={{ root: { width: 200, margin: 20, marginTop: 0 } }}
+            styles={{ root: { width: 200, marginRight: 20, marginBottom: 20 } }}
           />
         </Stack.Item>
         <Stack.Item styles={{ root: { position: 'relative', top: 4 } }}>

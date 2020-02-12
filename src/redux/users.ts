@@ -112,6 +112,9 @@ export const addUser = (data: IUserData) => (dispatch: Function) => {
 };
 
 export const fetchUsersList = () => async (dispatch: Function) => {
+  // Show preloader, request data
+  // ...
+  // When loaded:
   dispatch({
     type: UsersActionTypes.ReceiveUsersList,
     payload: list

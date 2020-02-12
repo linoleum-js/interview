@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initializeIcons } from '@uifabric/icons';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { Modal } from 'office-ui-fabric-react';
+import { find } from 'lodash';
 
 
 import { UsersList, IUsersListProps } from './components/UsersList';
@@ -28,7 +29,11 @@ export const App: React.FunctionComponent = () => {
   const onEdit = function (id: string) {
     setEditModalOpen(true);
     setEditingItemId(id);
+  };
 
+  const onEditSubmit = function (data: IUserData) {
+    dispatch(updateUser(data));
+    setEditModalOpen(false);
   };
 
   const onDelete = function (id: string) {
@@ -75,9 +80,10 @@ export const App: React.FunctionComponent = () => {
         onDismiss={() => setEditModalOpen(false)}
       >
         <UserForm
-          onSubmit={() => { console.log('submit edit'); }}
+          onSubmit={onEditSubmit}
           editMode={true}
           onClose={() => setEditModalOpen(false)}
+          data={find(usersList.list, (item) => item.id === editingItemId)}
         />
       </Modal>
     </div>

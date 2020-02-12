@@ -130,10 +130,12 @@ const UsersListReducer: Reducer<IUsersListState> = (
       const { payload: user } = action as UpdateUserAction;
       const { list } = state;
       const index: number = findIndex(list, { id: user.id });
+      const newList = [...list];
+      newList[index] = user;
 
       return {
         isLoading: false,
-        list: list.splice(index, 1, user)
+        list: newList
       };
     }
 

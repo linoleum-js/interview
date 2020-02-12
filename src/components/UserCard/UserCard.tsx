@@ -8,6 +8,8 @@ import {
 } from 'office-ui-fabric-react/lib/DocumentCard';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { IconButton } from 'office-ui-fabric-react';
+import { Text } from 'office-ui-fabric-react/lib/Text';
+import { IFontStyles } from 'office-ui-fabric-react/lib/Styling';
 
 import './UserCard.css';
 
@@ -37,15 +39,15 @@ export const UserCard: React.FunctionComponent<IUserCardProps> = ({
       />
       <div className="user-card-additional-info">
         <Icon iconName="phone" />
-        <span>{phone}</span>
+        <Text>{phone}</Text>
       </div>
       <div className="user-card-additional-info">
         <Icon iconName="mail" />
-        <span>{email}</span>
+        <Text>{email}</Text>
       </div>
       <div className="user-card-additional-info">
         <Icon iconName="room" />
-        <span>{office}</span>
+        <Text>{office}</Text>
       </div>
     </DocumentCardDetails>
     <div className="user-card-controls">

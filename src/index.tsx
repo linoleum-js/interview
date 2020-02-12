@@ -4,6 +4,9 @@ import { App } from './App';
 import { FluentCustomizations } from '@uifabric/fluent-theme';
 import { Customizer, mergeStyles } from 'office-ui-fabric-react';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
 
 // Inject some global styles
 mergeStyles({
@@ -18,7 +21,9 @@ mergeStyles({
 
 ReactDOM.render(
   <Customizer {...FluentCustomizations}>
+    <Provider store={store}>
     <App />
+    </Provider>
   </Customizer>,
   document.getElementById('root')
 );

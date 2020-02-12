@@ -3,12 +3,8 @@
 }
 
 .user-card-additional-info span {
-  padding-left: 10px;
+  padding-left: 15px;
   display: inline-block;
   position: relative;
   top: -2px;
-}
-
-.user-card-controls {
-  
 }

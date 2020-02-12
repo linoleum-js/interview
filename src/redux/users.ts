@@ -2,7 +2,7 @@ import { Reducer, Action } from 'redux';
 import { findIndex } from 'lodash';
 import uuid from 'uuid';
 
-import { IUserData } from '../components/UserCard/UserCard';
+import { IUserData } from '../models/IUserData';
 
 const list: IUserData[] = [{
   img: 'http://placekitten.com/200/200',

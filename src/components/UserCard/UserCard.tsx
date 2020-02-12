@@ -9,19 +9,13 @@ import {
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { IconButton } from 'office-ui-fabric-react';
 import { Text } from 'office-ui-fabric-react/lib/Text';
-import { IFontStyles } from 'office-ui-fabric-react/lib/Styling';
+
+
+import { IUserData } from '../../models/IUserData';
 
 import './UserCard.css';
 
-export interface IUserData {
-  img: string;
-  name: string;
-  phone: string;
-  jobTitle: string;
-  office: string;
-  id: string;
-  email: string;
-}
+
 type IUserCardProps = IUserData & {
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;

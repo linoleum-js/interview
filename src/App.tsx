@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeIcons } from '@uifabric/icons';
-import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { Modal } from 'office-ui-fabric-react';
 import { find } from 'lodash';
 
-import { UsersList, IUsersListProps } from './components/UsersList';
+import { UsersList } from './components/UsersList';
 import { UserForm } from './components/UserForm/UserForm';
-import { IUserData } from './components/UserCard/UserCard';
+import { IUserData } from './models/IUserData';
 import { IAppState } from './redux/store';
 import { IUsersListState } from './redux/users';
-import { DefaultButton, PrimaryButton, Stack, IStackItemStyles } from 'office-ui-fabric-react';
-import { Dropdown, DropdownMenuItemType, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { DefaultButton, Stack } from 'office-ui-fabric-react';
+import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 import {
   fetchUsersList, updateUser, deleteUser, addUser

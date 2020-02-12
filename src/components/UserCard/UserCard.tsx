@@ -1,15 +1,15 @@
 import React from 'react';
 import {
   DocumentCard,
-  DocumentCardActivity,
   DocumentCardDetails,
   DocumentCardPreview,
   DocumentCardTitle,
-  IDocumentCardPreviewProps,
   DocumentCardType,
-  IDocumentCardActivityPerson
 } from 'office-ui-fabric-react/lib/DocumentCard';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { IconButton } from 'office-ui-fabric-react';
+
+import './UserCard.css';
 
 export interface IUserCardProps {
   img: string;
@@ -31,18 +31,29 @@ export const UserCard: React.FunctionComponent<IUserCardProps> = ({
         title={`${name}, ${jobTitle}`}
         shouldTruncate={true}
       />
-      <div>
+      <div className="user-card-additional-info">
         <Icon iconName="phone" />
         <span>{phone}</span>
       </div>
-      <div>
+      <div className="user-card-additional-info">
         <Icon iconName="mail" />
         <span>{email}</span>
       </div>
-      <div>
+      <div className="user-card-additional-info">
         <Icon iconName="room" />
         <span>{office}</span>
       </div>
     </DocumentCardDetails>
+    <div className="user-card-controls">
+      <IconButton
+        iconProps={{ iconName: 'edit' }}
+        title="edit"
+      />
+
+      <IconButton
+        iconProps={{ iconName: 'delete' }}
+        title="delete"
+      />
+    </div>
   </DocumentCard>;
 };

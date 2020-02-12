@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, IStackTokens } from 'office-ui-fabric-react/lib/Stack';
 
-import { UserCard, IUserCardProps } from './UserCard';
+import { UserCard, IUserCardProps } from './UserCard/UserCard';
 
 export interface IUsersListProps {
   list: IUserCardProps[];
